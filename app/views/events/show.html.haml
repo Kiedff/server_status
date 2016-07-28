@@ -1,0 +1,11 @@
+.status{ style: "background-color: #{@event.status.colour}"}
+  = @event.status.name
+
+.event
+  = @event.title
+  %br
+  %br
+  = @event.content
+  %br
+  %br
+  = @event.resolved_at if @event.resolved_at

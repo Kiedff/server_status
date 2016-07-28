@@ -3,3 +3,8 @@
 - @active_statuses.each do |active_status|
   .active_status{ style: "background-color: #{active_status.colour}"}
     = active_status.name
+
+  - active_status.events.each do |event|
+    = link_to "#{event.title}", event_path(event)
+    = event.content
+    = event.active_at
