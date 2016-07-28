@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Status.delete_all
+
+Status.create!(name: "Critical", colour: "#ff0000", resolved: false)
+Status.create!(name: "Minor Issue", colour: "#FFC200")
+Status.create!(name: "All OK", colour: "#24A243")

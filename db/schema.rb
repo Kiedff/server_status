@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20160728125822) do
   create_table "statuses", force: :cascade do |t|
     t.string   "name"
     t.string   "colour"
-    t.boolean  "resolved",   default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "resolved",   default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade do |t|

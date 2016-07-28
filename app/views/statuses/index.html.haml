@@ -1,1 +1,5 @@
-hello
+%h1 statuses
+
+- @statuses.each do |status|
+  .status{ style: "background-color: #{status.colour}"}
+    = status.name

@@ -1,0 +1,5 @@
+%h1 active statuses
+
+- @active_statuses.each do |active_status|
+  .active_status{ style: "background-color: #{active_status.colour}"}
+    = active_status.name
