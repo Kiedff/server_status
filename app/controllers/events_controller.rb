@@ -21,6 +21,24 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def edit
+    @event = Event.find(params[:id])
+    @statuses = Status.all
+  end
+
+  def update
+    event = Event.find(params[:id])
+    event.update(event_params)
+
+    if event.save
+      flash[:notice] = "Event updated"
+    else
+      flash[:error] = "Unable to update event"
+    end
+
+    redirect_to event
+  end
+
   private
 
   def event_params
