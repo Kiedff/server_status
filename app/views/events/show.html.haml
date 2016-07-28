@@ -23,8 +23,11 @@
   .comments
     - if @event.comments != []
       %h2 latest update
-      %p Updated at #{@event.comments.first.created_at}
-      = @event.comments.first.body
+
+      - comment = @event.comments.first
+      %p Updated at #{comment.created_at}
+      %p #{comment.body}
+      = link_to "Edit", edit_event_comment_path(@event, comment)
 
     - if @event.comments.length > 1
       %h2 Previous updates
@@ -33,4 +36,5 @@
         - @event.comments.drop(1).each do |comment|
           %p Updated at #{comment.created_at}
           %p #{comment.body}
+          = link_to "Edit", edit_event_comment_path(@event, comment)
 

@@ -19,6 +19,29 @@ class CommentsController < ApplicationController
     redirect_to event
   end
 
+  def edit
+    @event = Event.find(params[:event_id])
+    @comment = Comment.find(params[:id])
+    @statuses = Status.all
+  end
+
+  def update
+    event = Event.find(params[:event_id])
+    event.status_id = params[:status_id]
+    event.updated_at = Time.now
+
+    comment = Comment.find(params[:id])
+    comment.update(comment_params)
+    
+
+    if comment.save && event.save
+      flash[:notice] = "Comment updated"
+    else
+      flash[:error] = "Unable to update comment"
+    end
+    redirect_to event
+  end
+
   private
 
   def comment_params
