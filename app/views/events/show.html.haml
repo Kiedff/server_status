@@ -1,0 +1,21 @@
+= link_to "Edit event", edit_event_path(@event)
+
+.status{ style: "background-color: #{@event.status.colour}"}
+  = @event.status.name
+
+.event
+
+  %h2 #{@event.title}
+
+  - if @event.resolved_at 
+    = @event.resolved_at
+
+  - else
+    - if @event.created_at != @event.updated_at
+      %p Updated at: 
+      %p #{@event.updated_at}
+
+  = @event.content
+  %br
+  %br
+  = @event.resolved_at if @event.resolved_at

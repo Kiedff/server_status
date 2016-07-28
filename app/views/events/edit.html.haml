@@ -1,0 +1,6 @@
+%h1 Edit event
+
+= simple_form_for(@event) do |f|
+  = render partial: 'event_form_fields', locals: { f: f }
+
+  = f.submit "Update"
