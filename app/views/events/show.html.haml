@@ -25,7 +25,13 @@
       %h2 latest update
 
       - comment = @event.comments.first
-      %p Updated at #{comment.created_at}
+
+      - if comment.updated_at
+        %p Updated at #{comment.updated_at}
+
+      - else
+        %p Updated at #{comment.created_at}
+
       %p #{comment.body}
       = link_to "Edit", edit_event_comment_path(@event, comment)
 
@@ -34,7 +40,12 @@
 
       .comment
         - @event.comments.drop(1).each do |comment|
-          %p Updated at #{comment.created_at}
+          - if comment.updated_at
+            %p Updated at #{comment.updated_at}
+            
+          - else
+            %p Updated at #{comment.created_at}
+
           %p #{comment.body}
           = link_to "Edit", edit_event_comment_path(@event, comment)
 
