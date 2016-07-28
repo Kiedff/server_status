@@ -2,6 +2,8 @@
 
 = simple_form_for([@event, @comment]) do |f|
 
+  = select_tag "status_id", options_from_collection_for_select( @statuses, "id", "name", @event.status_id), prompt: "Please select"
+
   = f.input :body
 
   = f.submit "Create" 
