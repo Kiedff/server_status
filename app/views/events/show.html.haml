@@ -48,4 +48,5 @@
 
           %p #{comment.body}
           = link_to "Edit", edit_event_comment_path(@event, comment)
+          = link_to "Delete", event_comment_path(@event, comment), method: :delete, data: { confirm: 'Are you sure?'}
 
