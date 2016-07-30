@@ -3,7 +3,7 @@ class CreateStatuses < ActiveRecord::Migration
     create_table :statuses do |t|
       t.string :name
       t.string :colour
-      t.boolean :resolved, default: true
+      t.boolean :resolved
 
       t.timestamps null: false
     end

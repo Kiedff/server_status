@@ -9,5 +9,5 @@
 Status.delete_all
 
 Status.create!(name: "Critical", colour: "#ff0000", resolved: false)
-Status.create!(name: "Minor Issue", colour: "#FFC200")
-Status.create!(name: "All OK", colour: "#24A243")
+Status.create!(name: "Minor Issue", colour: "#FFC200", resolved: false)
+Status.create!(name: "All OK", colour: "#24A243", resolved: true)

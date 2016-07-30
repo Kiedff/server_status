@@ -1,0 +1,11 @@
+%h1 active events
+
+
+- @active_events.each do |active_event|
+  - event_status = active_event.status
+  .status{ style: "background-color: #{event_status.colour}"}
+    = event_status.name
+
+  = link_to "#{active_event.title}", event_path(active_event)
+  = active_event.content
+  = active_event.active_at
