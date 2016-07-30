@@ -9,7 +9,7 @@
   %h2 #{@event.title}
 
   - if @event.resolved_at 
-    = @event.resolved_at
+    %p Resolved at #{@event.resolved_at}
 
   - else
     - if @event.created_at != @event.updated_at
@@ -48,4 +48,5 @@
 
           %p #{comment.body}
           = link_to "Edit", edit_event_comment_path(@event, comment)
+          = link_to "Delete", event_comment_path(@event, comment), method: :delete, data: { confirm: 'Are you sure?'}
 

@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
     event = Event.find(params[:event_id])
     event.status_id = params[:status_id]
     comment = event.comments.new(comment_params)
+    event.updated_at = Time.now
 
     if comment.save && event.save
       flash[:notice] = "Comment successfully created"
@@ -40,6 +41,22 @@ class CommentsController < ApplicationController
       flash[:error] = "Unable to update comment"
     end
     redirect_to event
+  end
+
+  def destroy
+    comment = Comment.find(params[:id])
+    event = Event.find(params[:event_id])
+
+    event.updated_at = Time.now
+
+    if comment.destroy && event.save
+      flash[:notice] = 'Comment deleted.'
+    else
+      flash[:error] = 'Unable to delete Comment'
+    end
+
+    redirect_to event
+
   end
 
   private

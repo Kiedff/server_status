@@ -9,6 +9,10 @@ class EventsController < ApplicationController
     @status = Status.find(params[:status_id])
     @event = @status.events.new(event_params)
 
+    if @status.resolved
+      event.resolved_at = Time.now
+    end
+
     if @event.save
       flash[:notice] = "Event successfully created"
     else
@@ -30,6 +34,10 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     event.update(event_params)
 
+    if event.status.resolved
+      event.resolved_at = Time.now
+    end
+
     if event.save
       flash[:notice] = "Event updated"
     else
@@ -37,6 +45,16 @@ class EventsController < ApplicationController
     end
 
     redirect_to event
+  end
+
+  def index
+    @resolved_events = []
+
+    Event.all.each do |event|
+      if event.status.resolved
+        @resolved_events << event
+      end
+    end
   end
 
   private
