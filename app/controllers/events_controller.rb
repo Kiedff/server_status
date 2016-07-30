@@ -43,6 +43,16 @@ class EventsController < ApplicationController
     redirect_to event
   end
 
+  def index
+    @resolved_events = []
+
+    Event.all.each do |event|
+      if event.status.resolved
+        @resolved_events << event
+      end
+    end
+  end
+
   private
 
   def event_params

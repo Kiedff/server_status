@@ -1,0 +1,10 @@
+%h1 Resolved Events
+
+- @resolved_events.each do |resolved_event|
+  - event_status = resolved_event.status
+  .resolved_event_status{ style: "background-color: #{event_status.colour}"}
+    = event_status.name
+
+  = link_to "#{resolved_event.title}", event_path(resolved_event)
+  = resolved_event.content
+  = resolved_event.active_at
