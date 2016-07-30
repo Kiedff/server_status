@@ -9,3 +9,15 @@
   = link_to "#{active_event.title}", event_path(active_event)
   = active_event.content
   = active_event.active_at
+
+%h1 pending events
+
+- @pending_events.each do |pending_event|
+  - pending_event_status = pending_event.status
+  .pending_status{ style: "background-color: #{pending_event_status.colour}"}
+    = pending_event_status.name
+
+  = link_to "#{pending_event.title}", event_path(pending_event)
+  = pending_event.content
+  = pending_event.active_at
+
