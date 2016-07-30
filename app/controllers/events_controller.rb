@@ -9,6 +9,10 @@ class EventsController < ApplicationController
     @status = Status.find(params[:status_id])
     @event = @status.events.new(event_params)
 
+    if @status.resolved
+      event.resolved_at = Time.now
+    end
+
     if @event.save
       flash[:notice] = "Event successfully created"
     else

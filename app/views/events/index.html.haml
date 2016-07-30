@@ -7,4 +7,4 @@
 
   = link_to "#{resolved_event.title}", event_path(resolved_event)
   = resolved_event.content
-  = resolved_event.active_at
+  %p Resolved at #{resolved_event.resolved_at}
