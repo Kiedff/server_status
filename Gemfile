@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'devise'
 gem 'haml-rails'
-gem 'aasm'
 gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

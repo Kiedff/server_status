@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (4.9.0)
     actionmailer (4.2.5.1)
       actionpack (= 4.2.5.1)
       actionview (= 4.2.5.1)
@@ -197,7 +196,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
   better_errors
   binding_of_caller
   byebug
