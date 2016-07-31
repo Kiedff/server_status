@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @event = Event.find(params[:event_id])
@@ -17,6 +18,7 @@ class CommentsController < ApplicationController
     else
       flash[:error] = "Unable to create comment"
     end
+
     redirect_to event
   end
 
@@ -56,7 +58,6 @@ class CommentsController < ApplicationController
     end
 
     redirect_to event
-
   end
 
   private
