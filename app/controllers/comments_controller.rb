@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     event = Event.find(params[:event_id])
     event.status_id = params[:status_id]
     comment = event.comments.new(comment_params)
+    comment.creator = current_user
     event.updated_at = Time.now
 
     if comment.save && event.save
@@ -63,6 +64,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :event_id)
+    params.require(:comment).permit(:body, :event_id, :creaotr_id)
   end
 end

@@ -11,8 +11,8 @@ User.delete_all
 Event.delete_all
 Comment.delete_all
 
-User.create!(email: "admin@email.example", password: "password", role: "admin")
-User.create!(email: "user@email.example", password: "password", role: "user")
+User.create!(email: "admin@email.example", password: "password", role: "admin", name: "Admin")
+User.create!(email: "user@email.example", password: "password", role: "user", name: "User")
 
 critical = Status.create!(name: "Critical", colour: "#ff0000", resolved: false)
 minor = Status.create!(name: "Minor Issue", colour: "#FFC200", resolved: false)
