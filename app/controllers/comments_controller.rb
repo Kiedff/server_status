@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  load_and_authorize_resource
 
   def new
     @event = Event.find(params[:event_id])
