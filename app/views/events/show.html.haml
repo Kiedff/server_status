@@ -1,5 +1,5 @@
-= link_to "Edit event", edit_event_path(@event)
-= link_to "Add comment", new_event_comment_path(@event)
+= link_to "Edit event", edit_event_path(@event) if can? :edit, Event
+= link_to "Add comment", new_event_comment_path(@event) if can? :create, Comment
 
 .status{ style: "background-color: #{@event.status.colour}"}
   = @event.status.name
@@ -33,7 +33,7 @@
         %p Updated at #{comment.created_at}
 
       %p #{comment.body}
-      = link_to "Edit", edit_event_comment_path(@event, comment)
+      = link_to "Edit", edit_event_comment_path(@event, comment) if can? :edit, Comment
 
     - if @event.comments.length > 1
       %h2 Previous updates

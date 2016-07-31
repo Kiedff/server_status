@@ -7,6 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Status.delete_all
+User.delete_all
+Event.delete_all
+
+User.create!(email: "admin@email.example", password: "password", role: "admin")
+User.create!(email: "user@email.example", password: "password", role: "user")
 
 Status.create!(name: "Critical", colour: "#ff0000", resolved: false)
 Status.create!(name: "Minor Issue", colour: "#FFC200", resolved: false)
