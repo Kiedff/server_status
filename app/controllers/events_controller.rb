@@ -40,7 +40,8 @@ class EventsController < ApplicationController
   def update
     event = Event.find(params[:id])
     event.update(event_params)
-
+    
+    event.status_id = params[:status_id]
 
     if event.status.resolved
       event.resolved_at = Time.now
