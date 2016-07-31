@@ -4,6 +4,5 @@ class Event < ActiveRecord::Base
 
   validates :title, presence: true
   validates :content, presence: true
-  validates :status, numericality: true
 
 end
