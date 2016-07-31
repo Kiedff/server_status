@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "active_events#index"
 
+  resources :active_events, only: :index
+
   resources :events do 
     resources :comments
   end

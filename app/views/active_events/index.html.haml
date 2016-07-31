@@ -1,3 +1,6 @@
+- content_for :head, auto_discovery_link_tag(:atom, active_events_url(format: "atom"))
+= link_to image_tag("feed-icon-28x28.png"), active_events_url(format: "atom")
+
 %h1 active events
 
 
@@ -8,7 +11,7 @@
 
   = link_to "#{active_event.title}", event_path(active_event)
   = active_event.content
-  = active_event.active_at
+  = active_event.updated_at
 
 %h1 pending events
 
