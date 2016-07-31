@@ -8,6 +8,9 @@ atom_feed do |feed|
     feed.entry active_event do |entry|
       entry.title active_event.title
       entry.content active_event.content
+      entry.author do |author|
+        author.name active_event.creator.name
+      end
     end
   end
 end
