@@ -7,11 +7,15 @@ class EventsController < ApplicationController
   end
 
   def create
-    @status = Status.find(params[:status_id])
-    @event = @status.events.new(event_params)
 
-    if @status.resolved
-      event.resolved_at = Time.now
+    #prevents breaking before validations when status id not supplied
+    if params[:status_id] != ""
+      @status = Status.find(params[:status_id])
+      @event = @status.events.new(event_params)
+    
+      if @status.resolved
+        event.resolved_at = Time.now
+      end
     end
 
     if @event.save
