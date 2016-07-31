@@ -1,4 +1,4 @@
 = f.input :title
 = f.input :content
 = f.input :active_at
-= select_tag "status_id", options_from_collection_for_select( @statuses, "id", "name", @event.status_id), prompt: "Please select"
+= select_tag "status_id", options_from_collection_for_select( @statuses, "id", "name", @event.status_id)
