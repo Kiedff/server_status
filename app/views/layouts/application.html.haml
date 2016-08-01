@@ -8,14 +8,15 @@
     = csrf_meta_tags
     = yield :head
   %body
-    = link_to "Home", root_path
-    = link_to "Resolved Events", events_path
+    .inner
+      = link_to "Home", root_path
+      = link_to "Resolved Events", events_path
 
-    
-    = link_to "Add Event", new_event_path if can? :create, Event
+      
+      = link_to "Add Event", new_event_path if can? :create, Event
 
-    = link_to "Log In", new_user_session_path unless current_user
-    = link_to "Log Out", destroy_user_session_path, method: :delete if current_user
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+      = link_to "Log In", new_user_session_path unless current_user
+      = link_to "Log Out", destroy_user_session_path, method: :delete if current_user
+      %p.notice= notice
+      %p.alert= alert
+      = yield

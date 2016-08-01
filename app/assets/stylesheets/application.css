@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+.inner {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.card {
+  border: 2px solid black;
+}
+
+.status {
+  display: inline-block;
+}
