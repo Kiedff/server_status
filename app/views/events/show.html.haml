@@ -1,52 +1,65 @@
-= link_to "Edit event", edit_event_path(@event) if can? :edit, Event
-= link_to "Add comment", new_event_comment_path(@event) if can? :create, Comment
 
-.status{ style: "background-color: #{@event.status.colour}"}
-  = @event.status.name
-
-.event
-
-  %h2 #{@event.title}
-
-  - if @event.resolved_at 
-    %p Resolved at #{@event.resolved_at}
-
-  - else
-    - if @event.created_at != @event.updated_at
-      %p Updated at: 
-      %p #{@event.updated_at}
-
-  = @event.content
-  %br
-  %br
-  
-  .comments
-    - if @event.comments != []
-      %h2 latest update
-
-      - comment = @event.comments.first
-
-      - if comment.updated_at
-        %p Updated at #{comment.updated_at}
-
-      - else
-        %p Updated at #{comment.created_at}
-
-      %p #{comment.body}
-      = link_to "Edit", edit_event_comment_path(@event, comment) if can? :edit, Comment
-
-    - if @event.comments.length > 1
-      %h2 Previous updates
-
-      .comment
-        - @event.comments.drop(1).each do |comment|
-          - if comment.updated_at
-            %p Updated at #{comment.updated_at}
-            
+.show_page
+  .show_links
+    = link_to "Edit event", edit_event_path(@event) if can? :edit, Event
+    = link_to "Add comment", new_event_comment_path(@event) if can? :create, Comment
+  .show_card
+    .headline
+      .status{ style: "background-color: #{@event.status.colour}"}
+        .details
+          - if @event.resolved_at
+            = image_tag("tick.png")
           - else
-            %p Updated at #{comment.created_at}
+            = image_tag("cross.png")
+          %p #{ @event.status.name}
 
-          %p #{comment.body}
-          = link_to "Edit", edit_event_comment_path(@event, comment) if can? :edit, Comment
-          = link_to "Delete", event_comment_path(@event, comment), method: :delete, data: { confirm: 'Are you sure?'} if can? :destroy, Comment
+      .card2
+        %h2 #{@event.title}
+        - if @event.resolved_at 
+          %p Resolved at #{@event.resolved_at_friendly}
+
+        - else
+          - if @event.created_at != @event.updated_at
+            %p Last updated at: #{@event.updated_at_friendly}
+          - else
+            %p Created at: #{@event.created_at_friendly}
+
+    .event_description
+      %h3 Details
+      .card3  
+        = @event.content
+        %br
+        %br
+        
+      .comments
+        - if @event.comments != []
+          %h3 latest update
+          .card3
+            - comment = @event.comments.first
+
+            - if comment.updated_at
+              %h4 Updated at #{comment.updated_at_friendly}
+
+            - else
+              %p Updated at #{comment.created_at_friendly}
+
+            %p #{comment.body}
+            = link_to "Edit", edit_event_comment_path(@event, comment) if can? :edit, Comment
+            = link_to "Delete", event_comment_path(@event, comment), method: :delete, data: { confirm: 'Are you sure?'} if can? :destroy, Comment
+
+        - if @event.comments.length > 1
+          %h3 Previous updates
+
+          .comment
+            - @event.comments.drop(1).each do |comment|
+              .card3
+                - if comment.updated_at
+                  %h4 Updated at #{comment.updated_at_friendly}
+                      
+                - else
+                  %h4 Updated at #{comment.created_at_friendly}
+
+                %p #{comment.body}
+                = link_to "Edit", edit_event_comment_path(@event, comment) if can? :edit, Comment
+                = link_to "Delete", event_comment_path(@event, comment), method: :delete, data: { confirm: 'Are you sure?'} if can? :destroy, Comment
 

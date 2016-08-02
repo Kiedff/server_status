@@ -1,28 +1,58 @@
 - content_for :head, auto_discovery_link_tag(:atom, active_events_url(format: "atom"))
-= link_to image_tag("feed-icon-28x28.png"), active_events_url(format: "atom")
 
-%h1 active events
+.wrap
+  .rss
+    = link_to image_tag("feed-icon-28x28.png"), active_events_url(format: "atom")
 
+  %h1 Active issues
 
-- @active_events.each do |active_event|
-  - event_status = active_event.status
+  - if @active_events != []
+    .events
+      - @active_events.each do |active_event|
+        - event_status = active_event.status
 
-  .card
-    .status{ style: "background-color: #{event_status.colour}"}
-      = event_status.name
+        .card{"data-link" => url_for(action: 'show', controller: 'events', id: active_event.id)} 
+          .status{ style: "background-color: #{event_status.colour}"}
+            .details
+              = image_tag("cross.png")
+              %p
+                = event_status.name
 
-    = link_to "#{active_event.title}", event_path(active_event)
-    = active_event.content
-    = active_event.updated_at
+          .card2
+            .title
+              %h2 #{active_event.title}
+            .date
+              %p Latest update: #{active_event.updated_at_friendly}
+  - else
+    .events
+      .card3
+        %h3 There are currently no active issues
+        %p details of active issues will appear here
+      
 
-%h1 pending events
+  %h1 Scheduled events
+  - if @pending_events != []
 
-- @pending_events.each do |pending_event|
-  - pending_event_status = pending_event.status
-  .pending_status{ style: "background-color: #{pending_event_status.colour}"}
-    = pending_event_status.name
+    .events
+      - @pending_events.each do |pending_event|
+        - pending_event_status = pending_event.status
 
-  = link_to "#{pending_event.title}", event_path(pending_event)
-  = pending_event.content
-  = pending_event.active_at
+        .card{"data-link" => url_for(action: 'show', controller: 'events', id: pending_event.id)} 
+          .status{ style: "background-color: #{pending_event_status.colour}"}
+            .details
+              = image_tag("cross.png")
+              %p
+                = pending_event_status.name
+
+          .card2
+            .title
+              %h2 #{pending_event.title}
+            .date
+              %p Latest update: #{pending_event.updated_at_friendly}
+  - else
+    .events
+      .card3
+        %h3 There are currently no scheduled events
+        %p details of scheduled maintenance will appear here
+
 

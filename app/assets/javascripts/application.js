@@ -11,6 +11,17 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(function(){
+
+  //events div link
+  $(".card[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
+
+});

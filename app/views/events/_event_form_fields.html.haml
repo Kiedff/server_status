@@ -1,4 +1,21 @@
-= f.input :title
-= f.input :content
-= f.input :active_at
+%br
+%label *Title
+%br
+= f.text_field :title
+%br
+%br
+%label *Content (drag corner to increase size)
+%br
+= f.text_area :content
+%br
+%br
+%label *Active at
+%br
+= f.date_field :active_at
+%br
+%br
+%label *Status
+%br
 = select_tag "status_id", options_from_collection_for_select( @statuses, "id", "name", @event.status_id)
+%br
+%br

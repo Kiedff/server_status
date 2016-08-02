@@ -57,13 +57,15 @@ class EventsController < ApplicationController
   end
 
   def index
-    @resolved_events = []
+    @events_array = []
 
     Event.all.each do |event|
       if event.status.resolved
-        @resolved_events << event
+        @events_array << event
       end
     end
+
+    @resolved_events = @events_array.paginate(page: params[:page], per_page: 5)
   end
 
   private

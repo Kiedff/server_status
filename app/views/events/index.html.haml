@@ -1,9 +1,22 @@
 %h1 Resolved Events
 
-- @resolved_events.each do |resolved_event|
-  - event_status = resolved_event.status
-  .resolved_event_status{ style: "background-color: #{event_status.colour}"}
-    = event_status.name
+.events
+  - @resolved_events.each do |resolved_event|
+    - event_status = resolved_event.status
 
-  = link_to "#{resolved_event.title}", event_path(resolved_event)
-  %p Resolved at #{resolved_event.resolved_at}
+    .card{"data-link" => url_for(action: 'show', controller: 'events', id: resolved_event.id)}
+      .status{ style: "background-color: #{event_status.colour}"}
+        .details
+          = image_tag("tick.png")
+          %p
+            = event_status.name
+      .card2
+        .title
+          %h3 #{resolved_event.title}
+        .date
+          %p Resolved at #{resolved_event.resolved_at_friendly}
+
+  = will_paginate @resolved_events
+
+
+         

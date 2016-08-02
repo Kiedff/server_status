@@ -6,4 +6,17 @@ class Event < ActiveRecord::Base
   validates :title, presence: true
   validates :content, presence: true
 
+
+  def resolved_at_friendly
+    self.resolved_at.to_time.strftime('%e %B %Y at %l:%M %p')
+  end
+
+  def updated_at_friendly
+    self.updated_at.to_time.strftime('%e %B %Y at %l:%M %p')
+  end
+
+  def created_at_friendly
+    self.created_at.to_time.strftime('%e %B %Y at %l:%M %p')
+  end
+
 end

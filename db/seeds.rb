@@ -16,7 +16,7 @@ admin2 = User.create!(email: "admin2@email.example", password: "password", role:
 User.create!(email: "user@email.example", password: "password", role: "user", name: "User")
 
 critical = Status.create!(name: "Critical", colour: "#ff0000", resolved: false)
-minor = Status.create!(name: "Minor Issue", colour: "#FFC200", resolved: false)
+fair = Status.create!(name: "Fair", colour: "#FFC200", resolved: false)
 ok = Status.create!(name: "All OK", colour: "#24A243", resolved: true)
 
 current = Event.create!(creator: admin1, title: "SAN Issue for VMs connected to XenGarden1 Nodes", content: "We are currently investigating an issue with one of our SANs connected to our XenGarden1 cluster, which may be affecting multiple customers. An update will be posted when more information is available.", active_at: Time.now, status: critical)
