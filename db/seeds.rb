@@ -17,7 +17,7 @@ User.create!(email: "user@email.example", password: "password", role: "user", na
 
 critical = Status.create!(name: "Critical", colour: "#ff0000", resolved: false)
 fair = Status.create!(name: "Fair", colour: "#FFC200", resolved: false)
-ok = Status.create!(name: "All OK", colour: "#24A243", resolved: true)
+ok = Status.create!(name: "OK", colour: "#24A243", resolved: true)
 
 current = Event.create!(creator: admin1, title: "SAN Issue for VMs connected to XenGarden1 Nodes", content: "We are currently investigating an issue with one of our SANs connected to our XenGarden1 cluster, which may be affecting multiple customers. An update will be posted when more information is available.", active_at: Time.now, status: critical)
 prev1 = Event.create!(creator: admin1, title: "vcenter inaccessible", content: "A problem with Melbourne's vmware vcenter has been identified requiring a reboot and update of services. Whilst no VMs are effected, access to the Vcenter interface will be unavailable during this time. Please open a support ticket or call us on 0161 232 0125 for assistance should you require anything to be done during this period of time.", active_at: 2.days.ago, status: ok, resolved_at: 1.days.ago)

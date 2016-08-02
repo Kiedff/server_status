@@ -6,6 +6,7 @@ gem 'simple_form'
 gem 'cancancan'
 gem 'jquery-turbolinks'
 gem 'will_paginate', '~> 3.1.0'
+gem 'rails_12factor', group: :production
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
